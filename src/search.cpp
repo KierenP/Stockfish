@@ -557,8 +557,9 @@ void Search::Worker::clear() {
                 for (auto& h : to)
                     h.fill(-473);
 
-    for (size_t i = 1; i < reductions.size(); ++i)
-        reductions[i] = int(2796 / 128.0 * std::log(i));
+    for (size_t d = 1; d < reductions.size(); ++d)
+        for (size_t m = 1; m < reductions[d].size(); m++)
+            reductions[d][m] = int(5120 / 128.0 * std::log(d) + 5120 / 128.0 * std::log(m) + 51200 / 128.0 * std::log(d) * std::log(m));
 
     refreshTable.clear(networks[numaAccessToken]);
 }
@@ -1754,7 +1755,7 @@ Value Search::Worker::qsearch(Position& pos, Stack* ss, Value alpha, Value beta)
 }
 
 Depth Search::Worker::reduction(bool i, Depth d, int mn, int delta) const {
-    int reductionScale = reductions[d] * reductions[mn];
+    int reductionScale = reductions[d][mn];
     return reductionScale - delta * 794 / rootDelta + !i * reductionScale * 205 / 512 + 1086;
 }
 
