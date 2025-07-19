@@ -559,7 +559,7 @@ void Search::Worker::clear() {
 
     for (size_t d = 1; d < reductions.size(); ++d)
         for (size_t m = 1; m < reductions[d].size(); m++)
-            reductions[d][m] = int(20480 / 128.0 * std::log(d) + 20480 / 128.0 * std::log(m) + 38400 / 128.0 * std::log(d) * std::log(m));
+            reductions[d][m] = int(40960 / 128.0 * std::log(d) + 40960 / 128.0 * std::log(m) + 25600 / 128.0 * std::log(d) * std::log(m));
 
     refreshTable.clear(networks[numaAccessToken]);
 }
