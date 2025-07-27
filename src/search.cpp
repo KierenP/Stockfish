@@ -1193,7 +1193,7 @@ moves_loop:  // When in check, search starts here
         if (ttCapture)
             r += 1350;
 
-        if (pos.capture_stage(move))
+        if (capture)
             r -= 256;
 
         // Increase reduction if next ply has a lot of fail high
